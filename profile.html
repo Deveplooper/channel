@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francis Legaspi | Creator Profile</title>
+
+<style>
+:root {
+  --primary:#6366F1;
+  --secondary:#10B981;
+  --tertiary:#A855F7;
+  --bg:#0B0F19;
+  --surface:#1C1F2B;
+  --soft:#252936;
+  --text:#E5E7F2;
+  --muted:#A3A6B7;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  padding:0 20px 40px;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(99,102,241,.12),transparent 35rem),
+    var(--bg);
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+
+/* NAVIGATION */
+
+.navbar {
+  width:min(1150px,100%);
+  min-height:85px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--text);
+}
+
+.brand img {
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  border-radius:12px;
+}
+
+.brand-name {
+  font-size:19px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+.nav-actions {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.nav-btn {
+  padding:11px 23px;
+  border-radius:30px;
+  font-size:14px;
+  font-weight:700;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.login-btn {
+  color:#DCDDF0;
+  border:1px solid rgba(255,255,255,.2);
+  background:transparent;
+}
+
+.login-btn:hover {
+  background:rgba(255,255,255,.08);
+}
+
+.signup-btn {
+  color:white;
+  background:linear-gradient(110deg,#6366F1,#A855F7);
+  border:1px solid transparent;
+}
+
+.signup-btn:hover {
+  filter:brightness(1.15);
+  transform:translateY(-2px);
+}
+
+/* PROFILE CARD */
+
+.profile-card {
+  width:min(980px,100%);
+  margin:38px auto 0;
+  padding:42px 34px 38px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  border:1px solid rgba(99,102,241,.17);
+  border-radius:42px;
+  background:linear-gradient(145deg,#202330,#1B1E29 60%,#191C27);
+  box-shadow:0 28px 90px rgba(0,0,0,.38);
+}
+
+.profile-card::before {
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  top:-245px;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:rgba(99,102,241,.16);
+  filter:blur(35px);
+  z-index:-1;
+}
+
+/* PROFILE IMAGE */
+
+.avatar-wrap {
+  width:142px;
+  height:142px;
+  margin:0 auto 13px;
+  position:relative;
+}
+
+.avatar {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center 28%;
+  border-radius:50%;
+  border:4px solid rgba(255,255,255,.12);
+  background:#303545;
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
+}
+
+/* VERIFIED BADGE */
+
+.verified-check {
+  position:absolute;
+  right:-8px;
+  bottom:0;
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  color:#075B45;
+  background:#6EE7B7;
+  border:3px solid #202330;
+  clip-path:polygon(
+    50% 0%,61% 10%,76% 5%,82% 20%,97% 25%,
+    92% 41%,100% 53%,89% 65%,92% 81%,75% 84%,
+    67% 98%,51% 91%,37% 100%,28% 86%,12% 87%,
+    13% 70%,0% 59%,9% 44%,3% 29%,20% 22%,
+    24% 7%,40% 11%
+  );
+}
+
+.verified-check svg {
+  width:27px;
+  height:27px;
+}
+
+.verified-label {
+  display:inline-block;
+  margin:0 auto 15px;
+  padding:7px 17px;
+  border:1px solid rgba(16,185,129,.22);
+  border-radius:999px;
+  color:#6EE7B7;
+  background:rgba(16,185,129,.14);
+  font-family:Consolas,monospace;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+}
+
+/* PROFILE TEXT */
+
+h1 {
+  margin:3px 0 8px;
+  font-size:clamp(2.7rem,8vw,4.7rem);
+  line-height:1.05;
+  font-weight:400;
+  letter-spacing:-.055em;
+}
+
+.bio {
+  margin:14px auto 23px;
+  color:#C9CAD8;
+  font-size:clamp(.98rem,2.2vw,1.16rem);
+  line-height:1.62;
+}
+
+.bio strong {
+  display:block;
+  margin-bottom:2px;
+  color:#E5E7F2;
+  font-weight:700;
+}
+
+.age {
+  color:#A5A7B7;
+  font-size:.92rem;
+}
+
+/* STATISTICS */
+
+.stats {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:18px 42px;
+  margin:24px 0 30px;
+}
+
+.stat {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:var(--muted);
+  font-size:1rem;
+}
+
+.user-icon {
+  width:27px;
+  height:27px;
+  color:#A5B4FC;
+}
+
+.rating-icon {
+  color:#34D399;
+  font-size:1.7rem;
+}
+
+.stat-number {
+  color:var(--text);
+  font-size:1.35rem;
+  font-weight:600;
+}
+
+.stat-caption {
+  margin-left:-5px;
+}
+
+/* SUBSCRIBE BUTTON */
+
+.subscribe-btn {
+  width:min(100%,560px);
+  min-height:94px;
+  padding:18px 30px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  border:0;
+  border-radius:999px;
+  color:#F0EEFF;
+  background:linear-gradient(105deg,#686CF4,#8657EC 58%,#B45CF3);
+  box-shadow:0 15px 34px rgba(111,91,238,.22);
+  font-size:clamp(1.65rem,4.7vw,2.75rem);
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.subscribe-btn:hover {
+  transform:translateY(-3px);
+  filter:brightness(1.08);
+}
+
+.preview-btn {
+  width:min(100%,560px);
+  min-height:55px;
+  margin:13px auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:1px solid rgba(196,181,253,.38);
+  border-radius:999px;
+  color:#DDD6FE;
+  background:rgba(99,102,241,.10);
+  font-size:1rem;
+  font-weight:700;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.preview-btn:hover {
+  transform:translateY(-2px);
+  border-color:#A855F7;
+  background:rgba(168,85,247,.18);
+}
+
+.activation-form {
+  width:min(100%,560px);
+  margin:16px auto 0;
+  padding:16px;
+  border:1px solid rgba(196,181,253,.22);
+  border-radius:18px;
+  background:rgba(99,102,241,.07);
+}
+
+.activation-form label {
+  display:block;
+  margin-bottom:9px;
+  color:#DCDDF0;
+  font-size:.82rem;
+  font-weight:700;
+}
+
+.activation-row { display:flex; gap:9px; }
+
+.activation-row input {
+  min-width:0;
+  flex:1;
+  padding:12px 13px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:10px;
+  outline:0;
+  color:white;
+  background:#252936;
+  font:inherit;
+}
+
+.activation-row button {
+  padding:0 15px;
+  border:0;
+  border-radius:10px;
+  color:white;
+  background:linear-gradient(105deg,#6366F1,#A855F7);
+  font-weight:700;
+  cursor:pointer;
+}
+
+.activation-message {
+  min-height:18px;
+  margin:9px 0 0;
+  color:#A3A6B7;
+  font-size:.77rem;
+}
+
+.bolt {
+  width:35px;
+  height:35px;
+}
+
+.chevron {
+  width:23px;
+  height:23px;
+}
+
+.footer-note {
+  margin:20px 0 0;
+  color:#777D91;
+  font-size:.78rem;
+  letter-spacing:.04em;
+}
+
+/* SUBSCRIPTION MODAL */
+
+.modal-backdrop {
+  position:fixed;
+  inset:0;
+  z-index:10;
+  display:none;
+  place-items:center;
+  padding:20px;
+  background:rgba(3,5,12,.76);
+  backdrop-filter:blur(8px);
+}
+
+.modal-backdrop.open {
+  display:grid;
+}
+
+.modal {
+  width:min(100%,430px);
+  max-height:90vh;
+  overflow-y:auto;
+  padding:30px;
+  border:1px solid rgba(168,85,247,.35);
+  border-radius:25px;
+  background:#1C1F2B;
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
+  animation:pop .2s ease;
+}
+
+@keyframes pop {
+  from { opacity:0;transform:translateY(12px); }
+  to { opacity:1;transform:translateY(0); }
+}
+
+.modal-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modal h2 { margin:0;font-size:1.4rem; }
+
+.modal p {
+  color:#AEB2C3;
+  line-height:1.5;
+}
+
+.close-btn {
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  color:white;
+  background:#303444;
+  font-size:23px;
+  cursor:pointer;
+}
+
+/* PLANS */
+
+.subscription-plans {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:20px;
+}
+
+.plan-option { cursor:pointer; }
+
+.plan-option input {
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.plan {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:14px;
+  background:#252936;
+  transition:.2s;
+}
+
+.plan strong { display:block; }
+
+.plan small {
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+}
+
+.plan b {
+  color:#C4B5FD;
+  font-size:1.2rem;
+}
+
+.plan-option:hover .plan {
+  border-color:#A855F7;
+}
+
+.plan-option input:checked + .plan {
+  border:2px solid #A855F7;
+  background:rgba(168,85,247,.13);
+  padding:15px;
+}
+
+.modal-action {
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  color:white;
+  background:linear-gradient(100deg,#6366F1,#A855F7);
+  font-weight:700;
+  cursor:pointer;
+}
+
+.modal-action:hover { filter:brightness(1.15); }
+
+.modal-hint {
+  font-size:.78rem;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+  body { padding:0 12px 25px; }
+
+  .navbar {
+    min-height:72px;
+    gap:8px;
+  }
+
+  .brand img {
+    width:38px;
+    height:38px;
+  }
+
+  .brand-name { font-size:15px; }
+
+  .nav-actions { gap:7px; }
+
+  .nav-btn {
+    padding:9px 12px;
+    font-size:12px;
+  }
+
+  .profile-card {
+    margin-top:20px;
+    padding:34px 18px 30px;
+    border-radius:28px;
+  }
+
+  .avatar-wrap {
+    width:124px;
+    height:124px;
+  }
+
+  .stats { gap:16px 22px; }
+
+  .stat { font-size:.85rem; }
+
+  .stat-number { font-size:1.15rem; }
+
+  .subscribe-btn {
+    min-height:72px;
+    padding:15px 18px;
+    gap:11px;
+  }
+
+  .bolt { width:27px;height:27px; }
+
+  .modal { padding:23px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION BAR -->
+
+<header class="navbar">
+
+  <a href="profile.html" class="brand">
+    <img src="photos/logo.png" alt="Website Logo">
+    <span class="brand-name">TG CHANNEL</span>
+  </a>
+
+  <nav class="nav-actions">
+    <a href="log.html?mode=login" class="nav-btn login-btn">
+      Log In
+    </a>
+
+    <a href="log.html?mode=signup" class="nav-btn signup-btn">
+      Sign Up
+    </a>
+  </nav>
+
+</header>
+
+<!-- PROFILE -->
+
+<main class="profile-card">
+
+  <div class="avatar-wrap">
+    <img
+      class="avatar"
+      src="photos/Profile.png"
+      alt="Francis Legaspi"
+    >
+
+    <span class="verified-check" title="Verified Creator">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M5 12.5L9.4 16.5L19 7.5"
+          stroke="#075B45"
+          stroke-width="3.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </div>
+
+  <div class="verified-label">
+    Verified Content Creator
+  </div>
+
+  <h1>Francis Legaspi</h1>
+
+  <p class="bio">
+    <strong>DADDY NEXT DOOR.</strong>
+    Massage &amp; Private Sessions<br>
+    Raw Moments &nbsp;|&nbsp; Exclusive Videos<br>
+    Your Favorite Daddy's After Dark<br>
+    <span class="age">18+</span>
+  </p>
+
+  <!-- STATISTICS -->
+
+  <section class="stats">
+
+    <div class="stat">
+      <svg class="user-icon" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+        />
+        <circle
+          cx="12" cy="7" r="4"
+          stroke="currentColor"
+          stroke-width="2.2"
+        />
+      </svg>
+
+      <span class="stat-number">1,793</span>
+      <span class="stat-caption">Subscribers</span>
+    </div>
+
+    <div class="stat">
+      <span class="rating-icon">✯</span>
+      <span class="stat-number">4.93</span>
+      <span class="stat-caption">/ 5.0 COMMUNITY RATING</span>
+    </div>
+
+  </section>
+
+  <!-- SUBSCRIBE BUTTON -->
+
+  <button class="subscribe-btn" id="subscribeBtn" type="button">
+
+    <svg class="bolt" viewBox="0 0 32 32" fill="none">
+      <path
+        d="M18.8 2.5 6.7 18.1h8.1l-1.6 11.4 12.1-16h-8.1l1.6-11Z"
+        stroke="currentColor"
+        stroke-width="3.1"
+        stroke-linejoin="miter"
+      />
+    </svg>
+
+    <span>Subscribe</span>
+
+    <svg class="chevron" viewBox="0 0 20 20" fill="none">
+      <path
+        d="m4 7 6 6 6-6"
+        stroke="currentColor"
+        stroke-width="2.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+
+  </button>
+
+  <form class="activation-form" id="activationForm">
+    <label for="activationCode">Have a subscription activation code from the creator?</label>
+    <div class="activation-row">
+      <input id="activationCode" type="text" placeholder="Enter activation code" required>
+      <button type="submit">Activate</button>
+    </div>
+    <p class="activation-message" id="activationMessage" aria-live="polite"></p>
+  </form>
+
+  <a class="preview-btn" href="preview.html">
+    <span aria-hidden="true">▷</span>
+    Preview Content
+  </a>
+
+  <p class="footer-note">AURA CREATOR PLATFORM</p>
+
+</main>
+
+
+<!-- SUBSCRIPTION MODAL -->
+
+<div class="modal-backdrop" id="subscribeModal" role="dialog"
+     aria-modal="true" aria-labelledby="modalTitle">
+
+  <div class="modal">
+
+    <div class="modal-top">
+      <h2 id="modalTitle">Subscribe to Francis</h2>
+      <button class="close-btn" id="closeModal" type="button">&times;</button>
+    </div>
+
+    <p>Select your preferred membership plan.</p>
+
+    <div class="subscription-plans">
+
+      <label class="plan-option">
+        <input type="radio" name="subscription" value="200">
+        <span class="plan">
+          <span>
+            <strong>1 Month Access</strong>
+            <small>30 Days Membership</small>
+          </span>
+          <b>₱200</b>
+        </span>
+      </label>
+
+      <label class="plan-option">
+        <input type="radio" name="subscription" value="350">
+        <span class="plan">
+          <span>
+            <strong>3 Months Access</strong>
+            <small>90 Days Membership</small>
+          </span>
+          <b>₱350</b>
+        </span>
+      </label>
+
+      <label class="plan-option">
+        <input type="radio" name="subscription" value="1000">
+        <span class="plan">
+          <span>
+            <strong>Lifetime Access</strong>
+            <small>Lifetime Membership</small>
+          </span>
+          <b>₱1,000</b>
+        </span>
+      </label>
+
+    </div>
+
+    <button class="modal-action" id="continueBtn" type="button">
+      Continue
+    </button>
+
+    <p class="modal-hint" id="modalHint" aria-live="polite">
+      Select a subscription plan to continue.
+    </p>
+
+  </div>
+</div>
+
+
+<script>
+const subscribeBtn = document.getElementById("subscribeBtn");
+const modal = document.getElementById("subscribeModal");
+const closeModal = document.getElementById("closeModal");
+const continueBtn = document.getElementById("continueBtn");
+const modalHint = document.getElementById("modalHint");
+
+subscribeBtn.addEventListener("click", () => {
+  modal.classList.add("open");
+  closeModal.focus();
+});
+
+function hideModal() {
+  modal.classList.remove("open");
+  subscribeBtn.focus();
+}
+
+closeModal.addEventListener("click", hideModal);
+
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) hideModal();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && modal.classList.contains("open")) {
+    hideModal();
+  }
+});
+
+continueBtn.addEventListener("click", () => {
+
+  const selected = document.querySelector(
+    'input[name="subscription"]:checked'
+  );
+
+  if (!selected) {
+    modalHint.style.color = "#F87171";
+    modalHint.textContent = "Please select a subscription plan.";
+    return;
+  }
+
+  const amount = Number(selected.value);
+
+  const planName = selected.closest(".plan-option")
+    .querySelector("strong").textContent;
+
+  modalHint.style.color = "#34D399";
+  modalHint.textContent =
+    `Selected: ${planName} - ₱${amount.toLocaleString("en-PH")}. Redirecting to payment methods...`;
+
+  window.setTimeout(() => {
+    window.location.href = "payment.html";
+  }, 600);
+});
+
+document.getElementById("activationForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  document.getElementById("activationMessage").textContent =
+    "Activation-code redemption is ready for secure server verification.";
+});
+</script>
+
+</body>
+</html>

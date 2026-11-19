@@ -1,0 +1,669 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0F19">
+<title>Login / Sign Up | TG CHANNEL</title>
+
+<style>
+:root {
+  --primary:#6366F1;
+  --purple:#A855F7;
+  --bg:#0B0F19;
+  --surface:#1C1F2B;
+  --soft:#252936;
+  --text:#E5E7F2;
+  --muted:#A3A6B7;
+  --green:#10B981;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  padding:25px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(99,102,241,.15),transparent 35rem),
+    var(--bg);
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+
+/* TOP LOGO */
+
+.top-logo {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:25px;
+  color:white;
+  text-decoration:none;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+
+.top-logo img {
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  border-radius:12px;
+}
+
+/* AUTH CARD */
+
+.auth-card {
+  width:min(100%,440px);
+  padding:35px;
+  border:1px solid rgba(99,102,241,.2);
+  border-radius:27px;
+  background:linear-gradient(145deg,#202330,#1B1E29);
+  box-shadow:0 25px 80px rgba(0,0,0,.4);
+}
+
+/* HEADER */
+
+.auth-heading {
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.auth-heading h1 {
+  margin:0 0 9px;
+  font-size:30px;
+  font-weight:700;
+}
+
+.auth-heading p {
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* TABS */
+
+.auth-tabs {
+  display:flex;
+  gap:7px;
+  padding:5px;
+  margin-bottom:26px;
+  border-radius:12px;
+  background:#111521;
+}
+
+.tab-btn {
+  flex:1;
+  padding:12px;
+  border:0;
+  border-radius:9px;
+  color:#A3A6B7;
+  background:transparent;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.tab-btn.active {
+  color:white;
+  background:linear-gradient(100deg,#6366F1,#A855F7);
+}
+
+/* FORM */
+
+.auth-form { display:none; }
+.auth-form.active { display:block; }
+
+.form-group { margin-bottom:17px; }
+
+.form-group label {
+  display:block;
+  margin-bottom:8px;
+  color:#D8D9E7;
+  font-size:13px;
+  font-weight:600;
+}
+
+.input-wrap { position:relative; }
+
+.form-group input {
+  width:100%;
+  height:48px;
+  padding:0 14px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:11px;
+  outline:none;
+  color:white;
+  background:#252936;
+  font-size:14px;
+  transition:.2s;
+}
+
+.form-group input:focus {
+  border-color:#A855F7;
+  box-shadow:0 0 0 3px rgba(168,85,247,.12);
+}
+
+.form-group input::placeholder { color:#777D91; }
+
+.password-input { padding-right:65px !important; }
+
+.show-password {
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  padding:5px;
+  border:0;
+  color:#A5B4FC;
+  background:transparent;
+  font-size:12px;
+  cursor:pointer;
+}
+
+/* EXTRA OPTIONS */
+
+.form-options {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:5px 0 20px;
+  font-size:12px;
+}
+
+.remember {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:var(--muted);
+}
+
+.remember input,
+.terms input {
+  accent-color:#A855F7;
+}
+
+.text-link {
+  color:#B99AFF;
+  text-decoration:none;
+}
+
+.text-link:hover {
+  color:#D4BFFF;
+  text-decoration:underline;
+}
+
+/* BUTTON */
+
+.submit-btn {
+  width:100%;
+  min-height:49px;
+  border:0;
+  border-radius:12px;
+  color:white;
+  background:linear-gradient(105deg,#6366F1,#A855F7);
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.submit-btn:hover {
+  filter:brightness(1.13);
+  transform:translateY(-2px);
+}
+
+/* DIVIDER */
+
+.divider {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:22px 0;
+  color:#777D91;
+  font-size:12px;
+}
+
+.divider::before,
+.divider::after {
+  content:"";
+  flex:1;
+  height:1px;
+  background:rgba(255,255,255,.1);
+}
+
+/* FOOTER */
+
+.auth-footer {
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.auth-footer a {
+  color:#B99AFF;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.back-profile {
+  display:block;
+  margin-top:23px;
+  color:#A3A6B7;
+  text-align:center;
+  text-decoration:none;
+  font-size:13px;
+}
+
+.back-profile:hover { color:white; }
+
+/* MESSAGES */
+
+.message {
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.message.error {
+  display:block;
+  color:#FCA5A5;
+  background:rgba(239,68,68,.1);
+  border:1px solid rgba(239,68,68,.2);
+}
+
+.message.success {
+  display:block;
+  color:#6EE7B7;
+  background:rgba(16,185,129,.1);
+  border:1px solid rgba(16,185,129,.2);
+}
+
+.terms {
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  margin:6px 0 20px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.terms input { margin-top:3px; }
+
+.terms a {
+  color:#B99AFF;
+  text-decoration:none;
+}
+
+@media(max-width:480px) {
+  .auth-card {
+    padding:25px 20px;
+    border-radius:21px;
+  }
+
+  .auth-heading h1 { font-size:26px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TG CHANNEL LOGO -->
+
+<a href="profile.html" class="top-logo">
+  <img src="photos/logo.png" alt="TG CHANNEL Logo">
+  <span>TG CHANNEL</span>
+</a>
+
+<!-- AUTHENTICATION CARD -->
+
+<main class="auth-card">
+
+  <div class="auth-heading">
+    <h1 id="pageTitle">Welcome Back</h1>
+    <p id="pageSubtitle">
+      Log in to access your TG CHANNEL account.
+    </p>
+  </div>
+
+  <!-- LOGIN / SIGNUP TABS -->
+
+  <div class="auth-tabs">
+    <button class="tab-btn active" id="loginTab" type="button">
+      Log In
+    </button>
+
+    <button class="tab-btn" id="signupTab" type="button">
+      Sign Up
+    </button>
+  </div>
+
+  <!-- LOGIN FORM -->
+
+  <form class="auth-form active" id="loginForm">
+
+    <div class="form-group">
+      <label for="loginEmail">Email Address</label>
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="loginPassword">Password</label>
+
+      <div class="input-wrap">
+        <input
+          type="password"
+          id="loginPassword"
+          class="password-input"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button
+          type="button"
+          class="show-password"
+          data-target="loginPassword"
+        >Show</button>
+      </div>
+    </div>
+
+    <div class="form-options">
+      <label class="remember">
+        <input type="checkbox" id="rememberMe">
+        Remember me
+      </label>
+
+    </div>
+
+    <button type="submit" class="submit-btn">
+      Log In
+    </button>
+
+    <div class="message" id="loginMessage" aria-live="polite"></div>
+
+  </form>
+
+  <!-- SIGN UP FORM -->
+
+  <form class="auth-form" id="signupForm">
+
+    <div class="form-group">
+      <label for="signupName">Full Name</label>
+      <input
+        type="text"
+        id="signupName"
+        placeholder="Enter your full name"
+        autocomplete="name"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="signupEmail">Email Address</label>
+      <input
+        type="email"
+        id="signupEmail"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="signupPassword">Password</label>
+
+      <div class="input-wrap">
+        <input
+          type="password"
+          id="signupPassword"
+          class="password-input"
+          placeholder="Create a password"
+          minlength="8"
+          autocomplete="new-password"
+          required
+        >
+
+        <button
+          type="button"
+          class="show-password"
+          data-target="signupPassword"
+        >Show</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+
+      <div class="input-wrap">
+        <input
+          type="password"
+          id="confirmPassword"
+          class="password-input"
+          placeholder="Confirm your password"
+          minlength="8"
+          autocomplete="new-password"
+          required
+        >
+
+        <button
+          type="button"
+          class="show-password"
+          data-target="confirmPassword"
+        >Show</button>
+      </div>
+    </div>
+
+    <label class="terms">
+      <input type="checkbox" id="agreeTerms" required>
+      <span>
+        I agree to the
+        <a href="terms.html" id="termsLink">Terms and Conditions</a>
+        and Privacy Policy.
+      </span>
+    </label>
+
+    <button type="submit" class="submit-btn">
+      Create Account
+    </button>
+
+    <div class="message" id="signupMessage" aria-live="polite"></div>
+
+  </form>
+
+  <div class="divider">TG CHANNEL</div>
+
+  <div class="auth-footer">
+    By continuing, you acknowledge that you are at least 18 years old.
+  </div>
+
+  <a href="profile.html" class="back-profile">
+    ← Back to Creator Profile
+  </a>
+
+</main>
+
+<script>
+
+// ELEMENTS
+
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+const pageTitle = document.getElementById("pageTitle");
+const pageSubtitle = document.getElementById("pageSubtitle");
+
+
+// SWITCH BETWEEN LOGIN AND SIGNUP
+
+function showLogin() {
+
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
+
+  loginForm.classList.add("active");
+  signupForm.classList.remove("active");
+
+  pageTitle.textContent = "Welcome Back";
+  pageSubtitle.textContent =
+    "Log in to access your TG CHANNEL account.";
+
+  clearMessages();
+}
+
+function showSignup() {
+
+  signupTab.classList.add("active");
+  loginTab.classList.remove("active");
+
+  signupForm.classList.add("active");
+  loginForm.classList.remove("active");
+
+  pageTitle.textContent = "Create Your Account";
+  pageSubtitle.textContent =
+    "Join TG CHANNEL and get started today.";
+
+  clearMessages();
+}
+
+loginTab.addEventListener("click", showLogin);
+signupTab.addEventListener("click", showSignup);
+
+
+// READ URL MODE
+
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("mode") === "signup") {
+  showSignup();
+} else {
+  showLogin();
+}
+
+
+// CLEAR MESSAGES
+
+function clearMessages() {
+  document.querySelectorAll(".message").forEach(message => {
+    message.textContent = "";
+    message.className = "message";
+  });
+}
+
+
+// SHOW / HIDE PASSWORD
+
+document.querySelectorAll(".show-password").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const target = document.getElementById(button.dataset.target);
+
+    if (target.type === "password") {
+      target.type = "text";
+      button.textContent = "Hide";
+    } else {
+      target.type = "password";
+      button.textContent = "Show";
+    }
+
+  });
+
+});
+
+
+// LOGIN FORM
+
+loginForm.addEventListener("submit", (event) => {
+
+  event.preventDefault();
+
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+
+  const message = document.getElementById("loginMessage");
+
+  if (!email || !password) {
+    message.className = "message error";
+    message.textContent = "Please complete all fields.";
+    return;
+  }
+
+  message.className = "message error";
+  message.textContent =
+    "TG CHANNEL login is ready for backend authentication. No account has been authenticated yet.";
+
+});
+
+
+// SIGN UP FORM
+
+signupForm.addEventListener("submit", (event) => {
+
+  event.preventDefault();
+
+  const name = document.getElementById("signupName").value.trim();
+  const email = document.getElementById("signupEmail").value.trim();
+
+  const password = document.getElementById("signupPassword").value;
+  const confirm = document.getElementById("confirmPassword").value;
+
+  const terms = document.getElementById("agreeTerms").checked;
+
+  const message = document.getElementById("signupMessage");
+
+  if (password.length < 8) {
+    message.className = "message error";
+    message.textContent =
+      "Password must contain at least 8 characters.";
+    return;
+  }
+
+  if (password !== confirm) {
+    message.className = "message error";
+    message.textContent =
+      "Passwords do not match. Please try again.";
+    return;
+  }
+
+  if (!terms) {
+    message.className = "message error";
+    message.textContent =
+      "Please agree to the Terms and Conditions.";
+    return;
+  }
+
+  message.className = "message error";
+  message.textContent =
+    "Your TG CHANNEL registration form is ready, but account creation requires a backend.";
+
+});
+
+
+</script>
+
+</body>
+</html>

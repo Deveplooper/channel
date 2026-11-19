@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B0F19">
+  <title>Preview | Francis Legaspi</title>
+  <style>
+    :root { --bg:#0b0f19; --surface:#1c1f2b; --soft:#252936; --text:#e5e7f2; --muted:#a3a6b7; --indigo:#6366f1; --purple:#a855f7; --green:#6ee7b7; }
+    * { box-sizing:border-box; }
+    body { min-height:100vh; margin:0; padding:0 20px 42px; color:var(--text); background:radial-gradient(circle at 50% 0,rgba(99,102,241,.15),transparent 35rem),var(--bg); font-family:"Segoe UI",Arial,sans-serif; }
+    .nav { width:min(1050px,100%); min-height:82px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:15px; }
+    .brand,.back { display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none; font-weight:750; }
+    .brand img { width:43px; height:43px; object-fit:contain; border-radius:11px; }
+    .back { padding:10px 15px; border:1px solid rgba(255,255,255,.16); border-radius:999px; color:#d9daeb; font-size:.86rem; transition:.2s; }
+    .back:hover { background:rgba(255,255,255,.08); }
+    main { width:min(1050px,100%); margin:23px auto 0; }
+    .heading { text-align:center; margin-bottom:28px; }
+    .tag { display:inline-block; padding:7px 13px; border:1px solid rgba(16,185,129,.25); border-radius:999px; color:var(--green); background:rgba(16,185,129,.1); font-family:Consolas,monospace; font-size:10px; font-weight:800; letter-spacing:.16em; }
+    h1 { margin:13px 0 8px; font-size:clamp(2.2rem,6vw,4rem); letter-spacing:-.055em; }
+    .heading p { margin:0; color:var(--muted); }
+    .video-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:18px; }
+    .video-card { overflow:hidden; border:1px solid rgba(99,102,241,.22); border-radius:20px; background:#151925; box-shadow:0 18px 42px rgba(0,0,0,.28); }
+    .video-card video { display:block; width:100%; aspect-ratio:9/14; background:#05070c; object-fit:cover; }
+    .video-card p { margin:0; padding:12px 14px; color:#d9dbea; font-size:.87rem; font-weight:700; }
+    .preview-card { display:grid; grid-template-columns:1.1fr .9fr; overflow:hidden; border:1px solid rgba(99,102,241,.2); border-radius:30px; background:linear-gradient(145deg,#202330,#191c27); box-shadow:0 25px 80px rgba(0,0,0,.38); }
+    .media { min-height:440px; background:linear-gradient(0deg,rgba(7,9,16,.68),rgba(7,9,16,.04)),url('photos/profile.png') center 22%/cover; }
+    .details { padding:42px 36px; display:flex; flex-direction:column; justify-content:center; }
+    .profile { display:flex; align-items:center; gap:12px; margin-bottom:21px; }
+    .avatar { width:48px; height:48px; object-fit:cover; object-position:center 25%; border:2px solid rgba(255,255,255,.15); border-radius:50%; }
+    .profile b { display:block; font-size:1rem; }.profile span { color:var(--green); font-size:.77rem; }
+    .details h2 { margin:0 0 12px; font-size:2rem; letter-spacing:-.04em; }.details p { margin:0; color:#c4c6d2; line-height:1.65; }
+    .list { margin:25px 0; padding:0; list-style:none; }.list li { display:flex; gap:10px; margin:12px 0; color:#d5d7e2; font-size:.91rem; }.list li::before { content:"✓"; color:var(--green); font-weight:800; }
+    .subscribe { padding:15px 20px; border-radius:13px; color:#fff; background:linear-gradient(105deg,var(--indigo),var(--purple)); box-shadow:0 12px 27px rgba(100,89,233,.2); font-weight:700; text-align:center; text-decoration:none; transition:.2s; }.subscribe:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .notice { margin:17px 0 0; color:#777d91 !important; font-size:.75rem; text-align:center; }
+    @media(max-width:720px) { body { padding:0 13px 26px; }.nav { min-height:72px; }.brand img { width:38px; height:38px; }.brand span { font-size:.9rem; }.back { padding:9px 11px; font-size:.76rem; }.video-grid { grid-template-columns:1fr; }.video-card video { aspect-ratio:16/10; }.preview-card { grid-template-columns:1fr; }.media { min-height:340px; }.details { padding:30px 23px; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="profile.html"><img src="photos/logo.png" alt="TG CHANNEL logo"><span>TG CHANNEL</span></a>
+    <a class="back" href="profile.html">← Back to profile</a>
+  </header>
+  <main>
+    <section class="heading"><span class="tag">CREATOR PREVIEW</span><h1>Get to know Francis.</h1><p>A small look at the exclusive experience waiting for subscribers.</p></section>
+    <section class="video-grid" aria-label="Preview videos">
+      <article class="video-card"><video autoplay muted loop playsinline preload="metadata" controlslist="nodownload noplaybackrate"><source src="videos/preview1.mp4" type="video/mp4">Your browser does not support video playback.</video><p>Preview 1</p></article>
+      <article class="video-card"><video autoplay muted loop playsinline preload="metadata" controlslist="nodownload noplaybackrate"><source src="videos/preview2.mp4" type="video/mp4">Your browser does not support video playback.</video><p>Preview 2</p></article>
+      <article class="video-card"><video autoplay muted loop playsinline preload="metadata" controlslist="nodownload noplaybackrate"><source src="videos/preview3.mp4" type="video/mp4">Your browser does not support video playback.</video><p>Preview 3</p></article>
+    </section>
+    <section class="preview-card">
+      <div class="media" aria-label="Francis Legaspi"></div>
+      <div class="details">
+        <div class="profile"><img class="avatar" src="photos/profile.png" alt="Francis Legaspi"><div><b>Francis Legaspi</b><span>● VERIFIED CREATOR</span></div></div>
+        <h2>More than a follow.</h2>
+        <p>Become part of Francis's private community and stay close to every new update, post, and exclusive release.</p>
+        <ul class="list"><li>Subscriber-only creator updates</li><li>Exclusive photos and videos</li><li>Private community access</li></ul>
+        <a class="subscribe" href="profile.html#subscribeBtn">Unlock the full experience</a>
+        <p class="notice">You must be 18 or older to subscribe.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
